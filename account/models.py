@@ -32,8 +32,8 @@ class Account(AbstractUser):
 
     profile_image = models.ImageField(upload_to="profile/", blank=True, null=True)
 
-    USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["email"]
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
 
     def image_url(self):
         if self.profile_image:

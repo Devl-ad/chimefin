@@ -226,7 +226,7 @@ class LoginForm(forms.Form):
         password = cleaned_data.get("password")
 
         if email and password:
-            user = authenticate(username=email, password=password)
+            user = authenticate(email=email, password=password)
             if not user:
                 raise forms.ValidationError("Invalid email or password")
 
