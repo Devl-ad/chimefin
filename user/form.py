@@ -107,7 +107,7 @@ class CreateTXInForm(forms.ModelForm):
 
         transaction.purpose = self.cleaned_data["purpose"]
         transaction.bank_name = (
-            f"{self.cleaned_data["bank_name"]}: {self.cleaned_data["bank_address"]}"
+            f"{self.cleaned_data['bank_name']}: {self.cleaned_data['bank_address']}"
         )
 
         transaction.ben_acct = self.cleaned_data["ben_account_number"]
