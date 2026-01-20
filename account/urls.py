@@ -10,4 +10,5 @@ urlpatterns = [
         views.update_profile_image,
         name="update_profile_image",
     ),
+    path("logout/", views.log_out, name="logout"),
 ]

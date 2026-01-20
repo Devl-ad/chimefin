@@ -80,3 +80,8 @@ def logi_acct(request):
 
 def forgot_pass(request):
     return render(request, "auth/forgot-pasword.html")
+
+
+def log_out(request):
+    logout(request)
+    return redirect("login_acct")

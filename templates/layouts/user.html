@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -23,38 +23,38 @@
       document.documentElement.style.setProperty("--primary-color", "#0ea5e9");
       document.documentElement.style.setProperty(
         "--primary-color-dark",
-        "#0369a1"
+        "#0369a1",
       );
       document.documentElement.style.setProperty(
         "--primary-color-light",
-        "#38bdf8"
+        "#38bdf8",
       );
       document.documentElement.style.setProperty(
         "--primary-color-lightest",
-        "#38bdf8"
+        "#38bdf8",
       );
       document.documentElement.style.setProperty(
         "--secondary-color",
-        "#14b8a6"
+        "#14b8a6",
       );
       document.documentElement.style.setProperty(
         "--secondary-color-dark",
-        "#0f766e"
+        "#0f766e",
       );
       document.documentElement.style.setProperty(
         "--secondary-color-light",
-        "#5eead4"
+        "#5eead4",
       );
       document.documentElement.style.setProperty("--accent-color", "#ec4899");
       document.documentElement.style.setProperty("--text-color", "#111827");
       document.documentElement.style.setProperty("--bg-color", "#f9fafb");
       document.documentElement.style.setProperty(
         "--sidebar-bg-color",
-        "#1e293b"
+        "#1e293b",
       );
       document.documentElement.style.setProperty(
         "--sidebar-text-color",
-        "#ffffff"
+        "#ffffff",
       );
       document.documentElement.style.setProperty("--card-bg-color", "#ffffff");
     </script>
@@ -403,14 +403,14 @@
               <!-- KYC Verification Status -->
               <div class="mb-3">
                 <a
-                  href="https://account.trustyfinancebank.com/dashboard/verify-account"
+                  href="#"
                   class="flex items-center justify-center py-1 rounded-md bg-red-50 border border-red-100 hover:bg-red-100 transition-colors"
                 >
                   <span
                     class="text-xs text-red-800 font-medium flex items-center"
                   >
                     <i data-lucide="alert-circle" class="h-3 w-3 mr-1"></i>
-                    Verify KYC
+                    <!--  -->
                   </span>
                 </a>
               </div>
@@ -700,11 +700,11 @@
                     <!-- KYC Verification Status -->
                     <div class="mt-2">
                       <a
-                        href="https://account.trustyfinancebank.com/dashboard/verify-account"
+                        href="#"
                         class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800 hover:bg-red-200 flex items-center w-max"
                       >
                         <i data-lucide="alert-circle" class="h-3 w-3 mr-1"></i>
-                        Verify Account
+                        <!--  -->
                       </a>
                     </div>
                   </div>
@@ -733,7 +733,6 @@
                   </a>
                   <a
                     href="/logout"
-                    onclick="event.preventDefault(); document.getElementById('logout-form-header').submit();"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
                     role="menuitem"
                   >
@@ -743,18 +742,6 @@
                     ></i>
                     Sign Out
                   </a>
-                  <form
-                    id="logout-form-header"
-                    action="/logout"
-                    method="POST"
-                    style="display: none"
-                  >
-                    <input
-                      type="hidden"
-                      name="_token"
-                      value="H6E5eLjgXYYbc3bF9j50bc7QpjYj4cD0Bdwq4vbF"
-                    />
-                  </form>
                 </div>
               </div>
             </div>
@@ -804,10 +791,12 @@
 
               <div>
                 <h2 class="text-base font-semibold text-gray-900">David Rea</h2>
-                <p class="text-sm text-gray-500">Account: 57778562909</p>
+                <p class="text-sm text-gray-500">
+                  Account: {{user.first_name}}
+                </p>
 
                 <!-- KYC Verification Status -->
-                <div class="mt-1">
+                <!-- <div class="mt-1">
                   <a
                     href="https://account.trustyfinancebank.com/dashboard/verify-account"
                     class="px-2 py-0.5 text-xs rounded-full bg-red-100 text-red-800 hover:bg-red-200 inline-flex items-center"
@@ -815,7 +804,7 @@
                     <i data-lucide="alert-circle" class="h-3 w-3 mr-1"></i>
                     Verify Account
                   </a>
-                </div>
+                </div> -->
               </div>
             </div>
 
@@ -827,10 +816,7 @@
 
             <!-- Grid Menu - 3x3 Grid -->
             <div class="grid grid-cols-3 gap-3">
-              <a
-                href="https://account.trustyfinancebank.com/dashboard"
-                class="group"
-              >
+              <a href="/dashboard" class="group">
                 <div
                   class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-primary-50 to-primary-100 hover:from-primary-100 hover:to-primary-200 transition-all duration-300 p-2"
                 >
@@ -843,10 +829,7 @@
                 </div>
               </a>
 
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/accounthistory"
-                class="group"
-              >
+              <a href="/transaction-logs/" class="group">
                 <div
                   class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-secondary-50 to-secondary-100 hover:from-secondary-100 hover:to-secondary-200 transition-all duration-300 p-2"
                 >
@@ -864,10 +847,7 @@
                 </div>
               </a>
 
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/cards"
-                class="group"
-              >
+              <a href="/cards-view/" class="group">
                 <div
                   class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-primary-50 to-primary-100 hover:from-primary-100 hover:to-primary-200 transition-all duration-300 p-2"
                 >
@@ -880,10 +860,7 @@
                 </div>
               </a>
 
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/localtransfer"
-                class="group"
-              >
+              <a href="/local-transfer/" class="group">
                 <div
                   class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-secondary-50 to-secondary-100 hover:from-secondary-100 hover:to-secondary-200 transition-all duration-300 p-2"
                 >
@@ -901,10 +878,7 @@
                 </div>
               </a>
 
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/internationaltransfer"
-                class="group"
-              >
+              <a href="/inter-transfer/" class="group">
                 <div
                   class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-secondary-50 to-secondary-100 hover:from-secondary-100 hover:to-secondary-200 transition-all duration-300 p-2"
                 >
@@ -922,10 +896,7 @@
                 </div>
               </a>
 
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/deposits"
-                class="group"
-              >
+              <a href="/deposit/" class="group">
                 <div
                   class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-primary-50 to-primary-100 hover:from-primary-100 hover:to-primary-200 transition-all duration-300 p-2"
                 >
@@ -938,47 +909,7 @@
                 </div>
               </a>
 
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/loan"
-                class="group"
-              >
-                <div
-                  class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-secondary-50 to-secondary-100 hover:from-secondary-100 hover:to-secondary-200 transition-all duration-300 p-2"
-                >
-                  <div
-                    class="h-10 w-10 rounded-full bg-white flex items-center justify-center mb-1 shadow-sm group-hover:shadow transition-all"
-                  >
-                    <i
-                      data-lucide="credit-card"
-                      class="h-5 w-5 text-secondary-600"
-                    ></i>
-                  </div>
-                  <span class="text-xs font-medium text-gray-700">Loan</span>
-                </div>
-              </a>
-
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/irs-refund"
-                class="group"
-              >
-                <div
-                  class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-primary-50 to-primary-100 hover:from-primary-100 hover:to-primary-200 transition-all duration-300 p-2"
-                >
-                  <div
-                    class="h-10 w-10 rounded-full bg-white flex items-center justify-center mb-1 shadow-sm group-hover:shadow transition-all"
-                  >
-                    <i data-lucide="receipt" class="h-5 w-5 text-black"></i>
-                  </div>
-                  <span class="text-xs font-medium text-gray-700"
-                    >IRS Refund</span
-                  >
-                </div>
-              </a>
-
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/account-settings"
-                class="group"
-              >
+              <a href="/account-overview/" class="group">
                 <div
                   class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-primary-50 to-primary-100 hover:from-primary-100 hover:to-primary-200 transition-all duration-300 p-2"
                 >
@@ -993,10 +924,7 @@
                 </div>
               </a>
 
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/support"
-                class="group"
-              >
+              <a href="/contact-us/" class="group">
                 <div
                   class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-secondary-50 to-secondary-100 hover:from-secondary-100 hover:to-secondary-200 transition-all duration-300 p-2"
                 >
@@ -1012,11 +940,7 @@
                 </div>
               </a>
 
-              <a
-                href="https://account.trustyfinancebank.com/logout"
-                onclick="event.preventDefault(); document.getElementById('logout-form-grid').submit();"
-                class="group"
-              >
+              <a href="/logout" class="group">
                 <div
                   class="aspect-square flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-accent-50 to-accent-100 hover:from-accent-100 hover:to-accent-200 transition-all duration-300 p-2"
                 >
@@ -1031,18 +955,6 @@
                   <span class="text-xs font-medium text-gray-700">Logout</span>
                 </div>
               </a>
-              <form
-                id="logout-form-grid"
-                action="https://account.trustyfinancebank.com/logout"
-                method="POST"
-                style="display: none"
-              >
-                <input
-                  type="hidden"
-                  name="_token"
-                  value="H6E5eLjgXYYbc3bF9j50bc7QpjYj4cD0Bdwq4vbF"
-                />
-              </form>
             </div>
           </div>
         </div>
@@ -1054,31 +966,13 @@
             class="bg-white border-t border-gray-200 shadow-lg rounded-t-3xl mx-2 mb-1"
           >
             <div class="flex justify-between items-center px-6 py-3 relative">
-              <a
-                href="https://account.trustyfinancebank.com/dashboard"
-                class="flex flex-col items-center"
-              >
+              <a href="/dashboard" class="flex flex-col items-center">
                 <div
                   class="w-10 h-10 rounded-full flex items-center justify-center"
                 >
                   <i data-lucide="home" class="h-5 w-5 text-primary-600"></i>
                 </div>
                 <span class="text-xs font-medium text-primary-600">Home</span>
-              </a>
-
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/accounthistory"
-                class="flex flex-col items-center"
-              >
-                <div
-                  class="w-10 h-10 rounded-full flex items-center justify-center"
-                >
-                  <i
-                    data-lucide="bar-chart-2"
-                    class="h-5 w-5 text-gray-500"
-                  ></i>
-                </div>
-                <span class="text-xs font-medium text-gray-500">Stats</span>
               </a>
 
               <!-- Center Button - Floating Action Button -->
@@ -1093,10 +987,7 @@
                 </button>
               </div>
 
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/cards"
-                class="flex flex-col items-center"
-              >
+              <a href="/cards-view/" class="flex flex-col items-center">
                 <div
                   class="w-10 h-10 rounded-full flex items-center justify-center"
                 >
@@ -1108,10 +999,7 @@
                 <span class="text-xs font-medium text-gray-500">Cards</span>
               </a>
 
-              <a
-                href="https://account.trustyfinancebank.com/dashboard/account-settings"
-                class="flex flex-col items-center"
-              >
+              <a href="/account-overview/" class="flex flex-col items-center">
                 <div
                   class="w-10 h-10 rounded-full flex items-center justify-center"
                 >
