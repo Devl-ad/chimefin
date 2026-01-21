@@ -15,4 +15,5 @@ urlpatterns = [
     path("deposit/", views.deposit_view, name="deposit"),
     path("loan/", views.loan_view, name="loan"),
     path("account-overview/", views.account_view, name="account-overview"),
+    path("kyc-verify/", views.kyc_virify, name="kyc"),
 ]

@@ -15,6 +15,11 @@ def dashboard(request):
 
 
 @login_required
+def kyc_virify(request):
+    return render(request, "user/key_verify.html")
+
+
+@login_required
 def transactions_view(request):
     user = request.user
     transactions = Transactions.objects.filter(sender=user).order_by("-date")
@@ -24,12 +29,19 @@ def transactions_view(request):
 
 @login_required
 def card_view(request):
+    user = request.user
+    if user.is_verified != True:
+        messages.error(request, "Verify Your Account")
+        return redirect("kyc")
     return render(request, "user/cards.html")
 
 
 @login_required
 def local_transfer(request):
     user = request.user
+    if user.is_verified != True:
+        messages.error(request, "Verify Your Account")
+        return redirect("kyc")
 
     if request.method == "POST":
         form = CreateTXSBForm(request.POST)
@@ -74,6 +86,9 @@ def local_transfer(request):
 @login_required
 def inter_transfer(request):
     user = request.user
+    if user.is_verified != True:
+        messages.error(request, "Verify Your Account")
+        return redirect("kyc")
     form = CreateTXSBForm()
     return render(request, "user/intertransfer.html", {"form": form})
 
@@ -133,11 +148,19 @@ def inter_transfer_process(request):
 
 @login_required
 def deposit_view(request):
+    user = request.user
+    if user.is_verified != True:
+        messages.error(request, "Verify Your Account")
+        return redirect("kyc")
     return render(request, "user/dash_deposits.html")
 
 
 @login_required
 def loan_view(request):
+    user = request.user
+    if user.is_verified != True:
+        messages.error(request, "Verify Your Account")
+        return redirect("kyc")
     return render(request, "user/loan.html")
 
 
