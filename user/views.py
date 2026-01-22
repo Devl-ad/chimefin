@@ -5,6 +5,9 @@ from .form import CreateTXSBForm, CreateTXInForm
 from .models import Transactions
 from django.http import JsonResponse
 from django.db import transaction
+from account.forms import KycForm
+from account.models import Kyc
+
 import json
 
 
@@ -16,7 +19,42 @@ def dashboard(request):
 
 @login_required
 def kyc_virify(request):
-    return render(request, "user/key_verify.html")
+    user = request.user
+
+    try:
+        kyc = user.user_kyc
+    except Kyc.DoesNotExist:
+        kyc = None
+
+    # If KYC exists and still processing → block page
+    if kyc and kyc.status == "processing":
+        return render(request, "user/key_verify.html", {"kyc_pending": True})
+
+    # If declined → load form with existing data
+    if kyc and kyc.status == "declined":
+        form = KycForm(request.POST or None, request.FILES or None, instance=kyc)
+    else:
+        form = KycForm(request.POST or None, request.FILES or None)
+    print(request.POST)
+
+    if request.method == "POST":
+        if form.is_valid():
+            kyc_obj = form.save(commit=False)
+            kyc_obj.user = user
+            kyc_obj.status = "processing"
+            kyc_obj.save()
+            return redirect("dashboard")
+        else:
+            print(form.errors)
+
+    return render(
+        request,
+        "user/key_verify.html",
+        {
+            "form": form,
+            "kyc_pending": False,
+        },
+    )
 
 
 @login_required

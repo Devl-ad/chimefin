@@ -62,3 +62,52 @@ class Account(AbstractUser):
 
     #     # Call parent save method
     #     super().save(*args, **kwargs)
+
+
+# models.py
+
+
+class Kyc(models.Model):
+    user = models.OneToOneField(
+        Account,
+        related_name="user_kyc",
+        on_delete=models.CASCADE,
+    )
+
+    # Personal Details
+
+    title = models.CharField(max_length=50)
+    gender = models.CharField(max_length=50)
+    dob = models.DateField()
+
+    # Employment
+    ssn = models.CharField(max_length=100)
+    account_type = models.CharField(max_length=100)
+    employment_type = models.CharField(max_length=100)
+    income_range = models.CharField(max_length=100)
+
+    # Address
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+
+    # Next of Kin
+    kin_name = models.CharField(max_length=255)
+    kin_address = models.CharField(max_length=255)
+    relationship = models.CharField(max_length=100)
+    kin_age = models.CharField(max_length=10)
+
+    # Documents
+    document_type = models.CharField(max_length=100)
+    document_front = models.ImageField(upload_to="kyc/")
+    document_back = models.ImageField(upload_to="kyc/")
+
+    # Status
+    is_approved = models.BooleanField(default=False)
+    status = models.CharField(default="processing", max_length=50)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"KYC - {self.user.email}"

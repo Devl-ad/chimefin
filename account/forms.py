@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 # from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .models import Account
+from .models import Account, Kyc
 from account import helper
 from baseapp import utils
 
@@ -233,3 +233,10 @@ class LoginForm(forms.Form):
             cleaned_data["user"] = user
 
         return cleaned_data
+
+
+class KycForm(forms.ModelForm):
+    class Meta:
+        model = Kyc
+        fields = "__all__"
+        exclude = ["user", "is_approved", "status", "created_at"]

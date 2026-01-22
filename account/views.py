@@ -16,6 +16,7 @@ def update_profile_image(request):
     if request.method == "POST":
         form = ProfileImageForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
+
             form.save()
             messages.info(request, f"Profile Image Uploaded")
             return redirect("account-overview")
