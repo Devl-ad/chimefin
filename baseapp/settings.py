@@ -134,7 +134,7 @@ RECAPTCHA_PRIVATE_KEY = env.str("RECAPTCHA_PRIVATE_KEY")
 
 STATIC_URL = "assets/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "assets"),)
-STATIC_ROOT = "/home/chimefin/public_html/assets/"
+STATIC_ROOT = "/home2/chimefin/public_html/assets/"
 
 
 MEDIA_URL = "/media/"
