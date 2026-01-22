@@ -22,4 +22,7 @@ urlpatterns = [
         views.create_transactionIN,
         name="admin-in-transactions",
     ),
+    path("documents/", views.documents_, name="docs"),
+    path("documents-details/<int:pk>/", views.documents_details, name="docs_details"),
+    path("process-document/<int:pk>/", views.process_documents_, name="process_doc"),
 ]

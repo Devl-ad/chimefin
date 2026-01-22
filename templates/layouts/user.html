@@ -443,13 +443,13 @@
 
               <div class="flex space-x-2">
                 <a
-                  href="#"
+                  href="/account-overview/"
                   class="flex-1 inline-flex justify-center items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50"
                 >
                   <i data-lucide="user" class="h-3 w-3 mr-1"></i> Profile
                 </a>
                 <a
-                  href="/logout"
+                  href="/logout/"
                   class="flex-1 inline-flex justify-center items-center px-2.5 py-1.5 border border-transparent shadow-sm text-xs font-medium rounded text-white bg-primary-600 hover:bg-primary-700"
                 >
                   <i data-lucide="log-out" class="h-3 w-3 mr-1"></i> Logout
@@ -726,15 +726,48 @@
                     </p>
 
                     <!-- KYC Verification Status -->
-                    <div class="mt-2">
+                    {% if not kyc_exists %}
+                    <div class="mb-3">
                       <a
                         href="/kyc-verify/"
-                        class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800 hover:bg-red-200 flex items-center w-max"
+                        class="flex items-center justify-center py-1 rounded-md bg-red-50 border border-red-100 hover:bg-red-100 transition-colors"
                       >
-                        <i data-lucide="alert-circle" class="h-3 w-3 mr-1"></i>
-                        Verify Kyc
+                        <span
+                          class="text-xs text-red-800 font-medium flex items-center"
+                        >
+                          <i
+                            data-lucide="alert-circle"
+                            class="h-3 w-3 mr-1"
+                          ></i>
+                          Verify KYC
+                        </span>
                       </a>
                     </div>
+
+                    {% elif kyc_status == "processing" %}
+                    <div class="mb-3">
+                      <div
+                        class="flex items-center justify-center py-1 rounded-md bg-yellow-50 border border-yellow-100"
+                      >
+                        <span class="text-xs text-yellow-800 font-medium">
+                          KYC Pending Approval
+                        </span>
+                      </div>
+                    </div>
+
+                    {% elif kyc_status == "declined" %}
+                    <div class="mb-3">
+                      <a
+                        href="/kyc-verify/"
+                        class="flex items-center justify-center py-1 rounded-md bg-red-50 border border-red-100 hover:bg-red-100 transition-colors"
+                      >
+                        <span class="text-xs text-red-800 font-medium">
+                          KYC Declined — Resubmit
+                        </span>
+                      </a>
+                    </div>
+
+                    {% endif %}
                   </div>
 
                   <a
@@ -749,7 +782,7 @@
                     Support Ticket
                   </a>
                   <a
-                    href="#"
+                    href="/account-overview/"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
                     role="menuitem"
                   >

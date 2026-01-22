@@ -4,6 +4,8 @@ from account.models import Account
 from superuser.decorator import superuser_required
 from superuser.forms import LocalTxForms, DomesticTxForms, InterTxForms
 from user.models import Transactions
+from account.models import Kyc
+from django.http import JsonResponse
 from baseapp import utils
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
@@ -83,7 +85,7 @@ def user_detail(request, pk):
             mail.send(fail_silently=True)
             # mail ends
             messages.success(request, "Account Top Up Successful")
-            return redirect("admin-users-details", pk=account.id)
+            return redirect("admin-users-details", pk=account.id)  # type: ignore
         else:
             messages.success(request, "Something went wrong")
             return redirect("admin-users")
@@ -203,3 +205,38 @@ def create_transactionIN(request):
     else:
         form = InterTxForms(user=user)
     return render(request, "superuser/createTxIN.html", {"form": form})
+
+
+@superuser_required
+def documents_(request):
+    kyc = Kyc.objects.all()
+    return render(request, "superuser/doc.html", {"kyc": kyc})
+
+
+@superuser_required
+def documents_details(request, pk):
+    kyc = get_object_or_404(Kyc, pk=pk)
+    return render(request, "superuser/doc_detail.html", {"kyc": kyc})
+
+
+@superuser_required
+def process_documents_(request, pk):
+    if request.POST:
+        doc = Kyc.objects.get(pk=pk)
+        action = request.POST.get("action")
+        if action == "Approve":
+            doc.status = "approved"
+            doc.user.is_verified = True
+            doc.user.save()
+
+        elif action == "Decline":
+            doc.status = "declined"
+
+        else:
+            messages.success(request, "Error")
+            return redirect("docs_details", pk=doc.id)  # type: ignore
+        doc.save()
+        messages.success(request, action)
+        return redirect("docs_details", pk=doc.id)  # type: ignore
+    else:
+        return JsonResponse({"msg": "GET REQUST NOT ACCEPTED"})
