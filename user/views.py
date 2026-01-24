@@ -77,9 +77,9 @@ def card_view(request):
 @login_required
 def local_transfer(request):
     user = request.user
-    if user.is_verified != True:
-        messages.error(request, "Verify Your Account")
-        return redirect("kyc")
+    # if user.is_verified != True:
+    #     messages.error(request, "Verify Your Account")
+    #     return redirect("kyc")
 
     if request.method == "POST":
         form = CreateTXSBForm(request.POST)

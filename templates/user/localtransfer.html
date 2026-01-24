@@ -139,12 +139,10 @@
                       value="{{form.amount.value|default:0}}"
                       id="amount"
                       x-model="amount"
-                      @input="validateAmount()"
                       min="1"
                       max="100000000"
                       step="any"
                       class="block w-full pl-12 pr-20 py-4 border-2 border-primary-100 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-2xl font-bold"
-                      placeholder="0.00"
                       required
                     />
                     <div
